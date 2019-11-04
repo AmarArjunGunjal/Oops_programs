@@ -1,0 +1,21 @@
+
+{
+ 
+	"list1": {
+		"name": "basmati",
+		"weight": 5,
+		"price": 100
+	},
+	
+	"list2": {
+		"name": "mugdal",
+		"weight": 3,
+		"price": 200
+	},
+	
+	"list3": {
+		"name": "abc",
+		"weight": 15,
+		"price": 300
+	}	
+}

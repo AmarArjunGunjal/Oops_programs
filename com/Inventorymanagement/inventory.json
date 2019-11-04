@@ -1,0 +1,22 @@
+[
+{
+"name": "rice1",
+"weight": 10,
+"price": 110
+},
+{
+"name": "rice 2",
+"weight": 15,
+"price": 160
+},
+{
+"name": "wheat1",
+"weight": 20,
+"price": 210
+},
+{
+"name": "wheat2",
+"weight":25,
+"price": 260
+}
+]

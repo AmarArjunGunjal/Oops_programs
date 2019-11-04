@@ -1,0 +1,47 @@
+[
+	{
+
+	"name":"mayur",
+	"balance":5000,
+	"shareholdings":[
+			"cognizant",
+			"accenture",
+			"atos"
+			],
+		"quantity":[
+			10,	
+			20,
+			5
+			]
+	},
+
+	{
+	"name":"vivek",
+	"balance":9000,
+	"shareholdings":[
+			"cognizant",
+			
+			"atos"
+			],
+		"quantity":[
+			60,	
+			10	
+			
+			]
+	},
+	
+	{
+	"name":"dipak",
+	"balance":4000,
+	"shareholdings":[
+			"cognizant",
+			"accenture",
+			"atos"
+			],
+		"quantity":[
+			13,	
+			3,	
+			2
+			]
+	}
+]

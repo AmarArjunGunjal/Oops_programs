@@ -1,0 +1,14 @@
+[
+	{
+		"firstname": "amar",
+		"lastname": "gunjal",
+		"age": "24",
+		"address": "pune"
+	},
+	{
+		"firstname": "pandit",
+		"lastname": "walde",
+		"age": "24",
+		"address": "aurangabad"
+	}
+]
