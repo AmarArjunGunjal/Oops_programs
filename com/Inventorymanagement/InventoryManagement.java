@@ -21,6 +21,7 @@ public class InventoryManagement
 		});
 		for(details obj:al)
 		{
+			System.out.println("name "+obj.name+" "+"weight "+obj.weight+" "+"price "+obj.price);
 			System.out.println("total cost of "+obj.name+" "+obj.getWeight()*obj.getPrice());
 		}
 

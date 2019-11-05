@@ -34,7 +34,7 @@ public class DeckOfCards {
 				i++;
 			}
 		}
-		return cards;
+		return null;
 	}
 	
 	/**
@@ -89,6 +89,7 @@ public class DeckOfCards {
 			for (int j = 0; j < noOfCards; j++) 
 			{
 				playerCards[i][j] = cards[k];
+				
 				k++;
 			}
 		}
