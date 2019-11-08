@@ -1,0 +1,70 @@
+[
+	{
+		"name": "amar",
+		"balance": 4850,
+		"shareholding": [
+			"TCS",
+			"Wipro",
+			"ATOS"
+		],
+		"quantity": [
+			26,
+			5,
+			4
+		]
+	},
+	{
+		"name": "mayur",
+		"balance": 19460,
+		"shareholding": [
+			"Infosys",
+			"Microsoft"
+		],
+		"quantity": [
+			33,
+			41
+		]
+	},
+	{
+		"name": "manish",
+		"balance": 30000,
+		"shareholding": [
+			"Infosys",
+			"Microsoft"
+		],
+		"quantity": [
+			50,
+			60
+		]
+	},
+	{
+		"name": "dipak",
+		"balance": 40000,
+		"shareholding": [
+			"Infosys",
+			"Microsoft"
+		],
+		"quantity": [
+			70,
+			80
+		]
+	},
+	{
+		"name": "vivek",
+		"balance": 50000,
+		"shareholding": null,
+		"quantity": null
+	},
+	{
+		"name": "samir",
+		"balance": 5000,
+		"shareholding": null,
+		"quantity": null
+	},
+	{
+		"name": "tejas",
+		"balance": 10000,
+		"shareholding": null,
+		"quantity": null
+	}
+]
