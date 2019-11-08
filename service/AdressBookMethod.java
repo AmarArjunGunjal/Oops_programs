@@ -55,8 +55,10 @@ public class AdressBookMethod implements Operations
 			System.out.println("State is added");
 			do 
 			{
-				System.out.println("\n1.Add record\n2.Save Record\n3.Print Record\n4.Exit");
-				
+				System.out.println("add record");
+				System.out.println("2.save record");
+				System.out.println("3.print record");
+				System.out.println("4.exit");
 				System.out.println("Enter the choice");
 				choice=scanner.nextInt();
 				switch(choice)
@@ -100,6 +102,9 @@ public class AdressBookMethod implements Operations
 		
 	}
 
+	/**
+	 *purpose-to open the exsting data into the address book
+	 */
 	@Override
 	public void openAddressBook() 
 	{
@@ -119,7 +124,7 @@ public class AdressBookMethod implements Operations
 		boolean findstatename=false;
 		
 		for(int i=0;i<personalInfo.size();i++)
-		{
+		{	//its check the entered statename is match or not
 			if(personalInfo.get(i).getAddressobj().getState().equals(statename))
 			{
 				findstatename=true;
@@ -134,7 +139,14 @@ public class AdressBookMethod implements Operations
 			
 			do
 			{
-				System.out.println("1.Add Record\n2.Edit Record\n3.Delete Record\n4.Sort By last name\n5.Sort By Zip\n6.Print Address_Book\n7.Save Record \n8.Exit");
+				System.out.println("1.add Record");
+				System.out.println("2.edit record");
+				System.out.println("3.delete record");
+				System.out.println("4.sort by last name");
+				System.out.println("5.sort by zip");
+				System.out.println("6.print address book");
+				System.out.println("7.save record ");
+				System.out.println("8.exit");
 				choice =scanner.nextInt();
 				
 				switch(choice)
@@ -265,6 +277,9 @@ public class AdressBookMethod implements Operations
 		
 	}
 
+	/**
+	 *purpose-to delete any record in the address book
+	 */
 	@Override
 	public void deletePerson()
 	{
@@ -300,6 +315,7 @@ public class AdressBookMethod implements Operations
 	}
 	
 
+	@SuppressWarnings("unused")
 	@Override
 	public void editPerson() 
 	{
@@ -345,6 +361,9 @@ public class AdressBookMethod implements Operations
 		
 	}
 
+	/**
+	 *purpose-its sort the json file data by using last name
+	 */
 	@Override
 	public void sortByLastName()
 	{
@@ -365,6 +384,9 @@ public class AdressBookMethod implements Operations
 		
 	}
 
+	/**
+	 *purpose-its sort the json file data by using zip 
+	 */
 	@Override
 	public void sortByZip() 
 	{
@@ -387,6 +409,9 @@ public class AdressBookMethod implements Operations
 		
 	}
 
+	/**
+	 *purpose-to read the json file
+	 */
 	@Override
 	public void readJson()
 	{
@@ -430,8 +455,8 @@ public class AdressBookMethod implements Operations
 	@Override
 	public void saveAs() throws FileNotFoundException 
 	{
-		System.out.println("*******Save As**********");
-		String Inputpath="/home/admin-1/eclipse-workspace/AddressBook1/src/com/bridgelabz/addressbook1/JsonFile/AddressBook.json";
+		System.out.println("Save As");
+		String Inputpath="/home/admin1/Documents/workspace-spring-tool-suite-4-4.4.1.RELEASE/Oops_program_clinic/src/repository/adressbook.json";
 		
 		System.out.println("Enter Filename ");
 		Inputpath+=scanner.next();
