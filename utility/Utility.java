@@ -321,14 +321,15 @@ public class Utility implements CommercialData{
 		start_time = LocalTime.now();
 		List<Stockholder> list_of_buyers = readStockholder();
 		List<Company> list_of_companies = readCompany();
-
 		System.out.println("Enter name of buyer");
 		String buyer = Utility.readString();
 
 		int flag_buyer_cheak = 0, flag_symbol_cheak = 0;
 
-		for (Stockholder i : list_of_buyers) {
-			if (buyer.equals(i.getName())) {
+		for (Stockholder i : list_of_buyers)
+		{
+			if (buyer.equals(i.getName())) 
+			{
 				flag_buyer_cheak = 1;
 				balance_of_buyer = i.getBalance();
 				break;
@@ -336,14 +337,16 @@ public class Utility implements CommercialData{
 		}
 
 		// it checks that buyer has account or not
-		if (flag_buyer_cheak != 1) {
-			System.out.println("Buyer no account");
+		if (flag_buyer_cheak != 1) 
+		{
+			System.out.println("first create account to buy share");
 			return;
 		}
 
 		// it checks that buyer has sufficient balance or not
-		if (amount > balance_of_buyer) {
-			System.out.println("Entered Amount is > balance");
+		if (amount > balance_of_buyer)
+		{
+			System.out.println("Entered amount is < balance");
 			return;
 		}
 		int number_of_shares_avaliable = 0;
@@ -360,11 +363,11 @@ public class Utility implements CommercialData{
 		}
 		// its check that the buyer has sufficient amount or not to buy 1 share
 		if (amount < price_per_share) {
-			System.out.println("Entered amount is < price of one share");
+			System.out.println("Entered Amount is not sufficient to buy share");
 			return;
 		}
 
-		// check requested company is listed at Stock exchang
+		// check requested company is listed at Stock exchange
 		if (flag_symbol_cheak != 1) {
 			System.out.println("Company not present change it");
 			return;
@@ -445,7 +448,7 @@ public class Utility implements CommercialData{
 	}
 
 	/**
-	 *pupose-its sells the company shares and write the data into the file
+	 *purpose-its sells the company shares and write the data into the file
 	 */
 	@Override
 	public void sell(int amount ,String symbol) throws JsonParseException, JsonMappingException, IOException {
@@ -458,7 +461,6 @@ public class Utility implements CommercialData{
 		String seller = Utility.readString();
 
 		int flag_seller_cheak = 0;
-		// int balance_of_seller = 0;
 		Stockholder index_of_seller = null;
 		for (Stockholder i : list_of_sellers) {
 			if (seller.equals(i.getName())) {
@@ -634,9 +636,18 @@ public class Utility implements CommercialData{
 
 	}
 	
-		
+	public static Object readMapper(String path, Object object)
+			throws  IOException
+	{
+		return mapper.readValue(new File(path), object.getClass());
+	}
 	
-	
+		public static String writeMapper(String path, Object object)
+				throws  IOException 
+		{
+			mapper.writeValue(new File(path), object);
+			return "Success writing into file";
+		}
 	
 	
 	
