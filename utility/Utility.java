@@ -229,8 +229,15 @@ public class Utility implements CommercialData{
 	String path_of_stockHolder = "/home/admin1/Documents/workspace-spring-tool-suite-4-4.4.1.RELEASE/Oops_program_clinic/src/repository/stockholder.json";
 	String path_of_companies = "/home/admin1/Documents/workspace-spring-tool-suite-4-4.4.1.RELEASE/Oops_program_clinic/src/repository/company.json";
 
-	// Read Stock Holders
-	public List<Stockholder> readStockHolder() throws JsonParseException, JsonMappingException, IOException {
+	
+	/**
+	 * purpose-to read the stock data
+	 * @return
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	public List<Stockholder> readStockholder() throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		List<Stockholder> list_of_buyers = mapper.readValue(new File(path_of_stockHolder),
 				new TypeReference<List<Stockholder>>() {
@@ -238,33 +245,57 @@ public class Utility implements CommercialData{
 		return list_of_buyers;
 	}
 
-	// Read Companies
-	public List<Company> readCompanies() throws JsonParseException, JsonMappingException, IOException {
+	
+	/**
+	 * purpose-to read company data
+	 * @return
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	public List<Company> readCompany() throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		List<Company> list_of_companies = mapper.readValue(new File(path_of_companies),
 				new TypeReference<List<Company>>() {
 				});
 		return list_of_companies;
 	}
-
-	public void writeStockHolder(List<Stockholder> list_of_buyers)
+	
+	/**
+	 * purpose-to write the data into stockholder
+	 * @param list_of_buyers- holds the name of list  buyers name
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	public void writeStockholder(List<Stockholder> list_of_buyers)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(new File(path_of_stockHolder), list_of_buyers);
 	}
 
-	public void writeCompanies(List<Company> list_of_companies)
+	/**
+	 * purpose-to write the data into company
+	 * @param list_of_companies-holds the name of company
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	public void writeCompany(List<Company> list_of_companies)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(new File(path_of_companies), list_of_companies);
 	}
 
+	/**
+	 *purpose-to create the stack holder account and write the data into stack holder account
+	 */
 	@Override
 	public void createAccount() throws JsonParseException, JsonMappingException, IOException {
 		date = LocalDate.now();
 		start_time = LocalTime.now();
 		System.out.println(start_time);
-		List<Stockholder> list_of_buyers = readStockHolder();
+		List<Stockholder> list_of_buyers = readStockholder();
 		Stockholder newUser = new Stockholder();
 		System.out.println("Enter name of user");
 		newUser.setName(Utility.readString());
@@ -275,18 +306,21 @@ public class Utility implements CommercialData{
 		newUser.setQuantity(quantity);
 		newUser.setShareholding(stockHoldings);
 		list_of_buyers.add(newUser);
-		writeStockHolder(list_of_buyers);
+		writeStockholder(list_of_buyers);
 		end_time = LocalTime.now();
 		System.out.println("Account created successfully......");
 	}
 
+	/**
+	 *purpose-buy the shares of company and write those data into the stockholder file
+	 */
 	@Override
 	public void buy(int amount,String symbol) throws JsonParseException, JsonMappingException, IOException
 	{
 		date = LocalDate.now();
 		start_time = LocalTime.now();
-		List<Stockholder> list_of_buyers = readStockHolder();
-		List<Company> list_of_companies = readCompanies();
+		List<Stockholder> list_of_buyers = readStockholder();
+		List<Company> list_of_companies = readCompany();
 
 		System.out.println("Enter name of buyer");
 		String buyer = Utility.readString();
@@ -301,41 +335,44 @@ public class Utility implements CommercialData{
 			}
 		}
 
-		// Check buyer has account
+		// it checks that buyer has account or not
 		if (flag_buyer_cheak != 1) {
 			System.out.println("Buyer no account");
 			return;
 		}
 
-		// Check buyer have sufficient balance
+		// it checks that buyer has sufficient balance or not
 		if (amount > balance_of_buyer) {
 			System.out.println("Entered Amount is > balance");
 			return;
 		}
 		int number_of_shares_avaliable = 0;
 		int price_per_share = 0;
-		for (Company i : list_of_companies) {
-			if (symbol.equals(i.getSymbol())) {
+		for (Company i : list_of_companies) 
+		{
+			if (symbol.equals(i.getSymbol())) 
+			{
 				flag_symbol_cheak = 1;
 				number_of_shares_avaliable = i.getShares();
 				price_per_share = i.getPrice();
 				break;
 			}
 		}
-		// Check buyer entered sufficient amount to buy at least one share
+		// its check that the buyer has sufficient amount or not to buy 1 share
 		if (amount < price_per_share) {
 			System.out.println("Entered amount is < price of one share");
 			return;
 		}
 
-		// Check requested company is listed at Stock exchange
+		// check requested company is listed at Stock exchang
 		if (flag_symbol_cheak != 1) {
 			System.out.println("Company not present change it");
 			return;
 		}
 
-		// Check sufficent number of shares are present
-		if (number_of_shares_avaliable * price_per_share < amount) {
+		// it check that sufficient number of shares are present or not
+		if (number_of_shares_avaliable * price_per_share < amount) 
+		{
 			System.out.println("Unsufficient share is present");
 			return;
 		}
@@ -348,10 +385,10 @@ public class Utility implements CommercialData{
 		set = 1;
 		for (Stockholder i : list_of_buyers) {
 			if (buyer.equals(i.getName())) {
-				// Reducing balance of buyer account
+				// reducing balance of buyer account
 				i.setBalance(i.getBalance() - total_value_of_shares);
 
-				// adding Bought Share symbol to buyer account
+				// adding bought Share symbol to buyer account
 				String[] temp = i.getShareholding();
 				int index_of_symbol = 0;
 				for (int j = 0; j < temp.length; j++)
@@ -392,7 +429,7 @@ public class Utility implements CommercialData{
 				// Adding balance of sold shares
 				i.setBalance(i.getBalance() + total_value_of_shares);
 
-				// Substracting Number of shares sold
+				// subtracting Number of shares sold
 				i.setShares(i.getShares() - number_of_shares_bought);
 			}
 		}
@@ -407,12 +444,15 @@ public class Utility implements CommercialData{
 
 	}
 
+	/**
+	 *pupose-its sells the company shares and write the data into the file
+	 */
 	@Override
 	public void sell(int amount ,String symbol) throws JsonParseException, JsonMappingException, IOException {
 		date = LocalDate.now();
 		start_time = LocalTime.now();
-		List<Stockholder> list_of_sellers = readStockHolder();
-		List<Company> list_of_companies = readCompanies();
+		List<Stockholder> list_of_sellers = readStockholder();
+		List<Company> list_of_companies = readCompany();
 
 		System.out.println("Enter name of Seller");
 		String seller = Utility.readString();
@@ -429,12 +469,12 @@ public class Utility implements CommercialData{
 			}
 		}
 
-		// Check seller has account
+		//its  check seller has account or not
 		if (flag_seller_cheak != 1) {
 			System.out.println("seller no account");
 			return;
 		}
-		// Check seller have shares of requested company
+		// its check seller have shares of requested company
 		String[] shares = index_of_seller.getShareholding();
 		boolean check_company = false;
 		int index_of_required_symbol = 0;
@@ -448,7 +488,7 @@ public class Utility implements CommercialData{
 			System.out.println("Seller donot have requested company shares");
 			return;
 		}
-		// Check seller have sufficient shares
+		// its check seller have sufficient shares
 		int price_per_share = 0;
 		boolean flag_symbol_cheak = false;
 		Company index_of_company = null;
@@ -465,13 +505,13 @@ public class Utility implements CommercialData{
 			return;
 		}
 
-		// Check buyer enterd sufficient amount to buy atleast one share
+		// itc check buyer entered sufficient amount to buy at least one share
 		if (amount < price_per_share) {
 			System.out.println("Entered amount is less than price of one share");
 			return;
 		}
 
-		// Check requested company is listed at Stock exchange
+		// its check requested company is listed at Stock exchange or not
 		if (flag_symbol_cheak == false) {
 			System.out.println(" company is not listesd in stock exchange");
 			return;
@@ -515,8 +555,8 @@ public class Utility implements CommercialData{
 	 */
 	void save(List<Stockholder> list_of_buyers, List<Company> list_of_companies)
 			throws JsonGenerationException, JsonMappingException, IOException {
-		writeStockHolder(list_of_buyers);
-		writeCompanies(list_of_companies);
+		writeStockholder(list_of_buyers);
+		writeCompany(list_of_companies);
 		System.out.println("Data save successfully....");
 	}
 
@@ -532,8 +572,8 @@ public class Utility implements CommercialData{
 		System.out.println("Enter name of account holder");
 		String account_holder = Utility.readString();
 
-		List<Stockholder> list_of_account_holders = readStockHolder();
-		List<Company> list_of_companies = readCompanies();
+		List<Stockholder> list_of_account_holders = readStockholder();
+		List<Company> list_of_companies = readCompany();
 
 		Stockholder index_of_account = null;
 		boolean check_account = false;
@@ -571,7 +611,7 @@ public class Utility implements CommercialData{
 	}
 
 	/**
-	 * @Purpose - Prints Transaction report
+	 * @Purpose - its prints Transaction report
 	 */
 	public void printReport() {
 		System.out.println();
